@@ -707,7 +707,7 @@ int main(int argc, char **argv)
 
     // AUP
     string aup_file;
-    bool access_u;
+    bool access_u = false;
 
     if (argc > 1)
     {

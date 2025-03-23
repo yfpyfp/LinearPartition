@@ -63,7 +63,6 @@ void BeamCKYParser::output_to_file_AUP(string &seq, string file_name, const char
             fprintf(fptr, "%d %c %.5f\n", i, seq[i - 1], unpaired_prob[i]);
         }
 
-        // 输出 AUP
         fprintf(fptr, "\nAverage Unpaired Probability (AUP): %.5f\n", AUP);
         fclose(fptr);
         printf("Done!\n");

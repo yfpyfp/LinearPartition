@@ -29,8 +29,8 @@ def setgflags():
     flags.DEFINE_boolean('fasta', False, "input is in fasta format") # FASTA format
     flags.DEFINE_integer('dangles', 2, "the way to treat `dangling end' energies for bases adjacent to helices in free ends and multi-loops (only supporting `0' or `2', default=`2')", short_name="d")
     flags.DEFINE_string('evaly', "", "batch eval all sequences against structure for p(y|x)", short_name='y') # p(y|x)
-    flags.DEFINE_boolean('avg_unpaired_prob', False, "output average unpaired probability (AUP)", short_name='AUP') # AUP
-    flags.DEFINE_boolean('accessible_U', False, "Output the percentage of unpaired U", short_name='U') # accessible U%
+    flags.DEFINE_string('aup', '', "output average unpaired probability (AUP)") # AUP
+    flags.DEFINE_boolean('access_u', False, "Output the percentage of unpaired U", short_name='U') # accessible U%
     argv = FLAGS(sys.argv)
 
 def main():
@@ -54,11 +54,11 @@ def main():
     is_fasta = '1' if FLAGS.fasta else '0'
     dangles = str(FLAGS.dangles)    
     evaly = FLAGS.evaly
-    aup_file = str(FLAGS.AUP)
+    aup_file = str(FLAGS.aup)
     access_u = '1' if FLAGS.U else '0'
 
 
-    if FLAGS.p and (FLAGS.o or FLAGS.prefix or FLAGS.AUP):
+    if FLAGS.p and (FLAGS.o or FLAGS.prefix or FLAGS.aup):
         print("\nWARNING: -p mode has no output for base pairing probability matrix!\n");
 
     if FLAGS.o and FLAGS.r:
@@ -90,7 +90,7 @@ def main():
     if FLAGS.evaly:
         use_vienna = True # eval p(y|x) only in Vienna mode
 
-    if FLAGS.AUP:
+    if FLAGS.aup:
         if os.path.exists(aup_file):
             print("WARNING: AUP output file already exists. Choose another name.\n")
             print("Exit!\n")
