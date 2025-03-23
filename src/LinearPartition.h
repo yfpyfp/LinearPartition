@@ -120,7 +120,7 @@ public:
                   bool is_fasta=false,
 		          int dangles=1,
                   string aupfile="",
-                  bool access_u=false);
+                  bool accessu=false);
 
     // DecoderResult parse(string& seq);
     double parse(string& seq);
@@ -171,7 +171,7 @@ private:
 
     pf_type AUP;
 
-    void cal_AUP(string &seq)
+    void cal_AUP(string &seq);
 
     void output_to_file_AUP(string &seq, string file_name, const char * type);
 
