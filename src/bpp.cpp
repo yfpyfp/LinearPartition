@@ -46,11 +46,11 @@ void BeamCKYParser::output_to_file(string file_name, const char *type)
     return;
 }
 
-void BeamCKYParser::output_to_file_AUP(string &seq, string file_name, const char *type)
+void BeamCKYParser::output_to_file_unpaired(string &seq, string file_name, const char *type)
 {
     if (!file_name.empty())
     {
-        printf("Outputing Average Unpaired Probability (AUP) to %s...\n", file_name.c_str());
+        printf("Outputing unpaired probability for each nuc and average unpaired probability (AUP) to %s...\n", file_name.c_str());
         FILE *fptr = fopen(file_name.c_str(), type);
         if (fptr == NULL)
         {
@@ -161,7 +161,7 @@ void BeamCKYParser::cal_PairProb(State &viterbi)
     return;
 }
 
-void BeamCKYParser::cal_AUP(string &seq)
+void BeamCKYParser::cal_unpaired(string &seq)
 {
     for (const auto &entry : Pij)
     {
@@ -187,9 +187,9 @@ void BeamCKYParser::cal_AUP(string &seq)
 
     AUP = total_unpaired / seq_length;
 
-    if (!aup_file.empty())
+    if (!unpaired_file.empty())
     {
-        output_to_file_AUP(seq, aup_file, "a");
+        output_to_file_unpaired(seq, unpaired_file, "a");
     }
 
     return;
@@ -204,7 +204,8 @@ void BeamCKYParser::print_accessible_U(string &seq)
             sum_unpaired_U += unpaired_prob[i];
     }
 
-    printf("\naccessible U%%: %.5f\n", sum_unpaired_U);
+    pf_type accessible_U = sum_unpaired_U / seq_length;
+    printf("\naccessible U%%: %.5f\n", accessible_U);
 }
 
 string BeamCKYParser::back_trace(const int i, const int j, const vector<vector<int>> &back_pointer)

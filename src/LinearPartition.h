@@ -97,8 +97,8 @@ public:
     double m = 1.8;
     double b = -0.6;
 
-    // AUP
-    string aup_file;
+    // unpaired and AUP
+    string unpaired_file;
 
     // accessible U%
     bool access_u;
@@ -121,7 +121,7 @@ public:
                   string shape_file_path = "",
                   bool is_fasta = false,
                   int dangles = 1,
-                  string aupfile = "",
+                  string unpairedfile = "",
                   bool accessu = false);
 
     // DecoderResult parse(string& seq);
@@ -168,14 +168,14 @@ private:
     void output_to_file(string file_name, const char *type);
     void output_to_file_MEA_threshknot_bpseq(string file_name, const char *type, map<int, int> &pairs, string &seq);
 
-    // AUP
+    // unpaired and AUP
     vector<pf_type> unpaired_prob;
 
     pf_type AUP;
 
-    void cal_AUP(string &seq);
+    void cal_unpaired(string &seq);
 
-    void output_to_file_AUP(string &seq, string file_name, const char *type);
+    void output_to_file_unpaired(string &seq, string file_name, const char *type);
 
     // accessible U%
     void print_accessible_U(string &seq);

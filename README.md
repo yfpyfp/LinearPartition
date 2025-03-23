@@ -67,9 +67,9 @@ Output base pairing probability matrix to a file with user specified name (overw
 ```
 Outputs base pairing probability matrices to files with user specified prefix. (default False)
 ```
---aup FILE_NAME
+--unpaired FILE_NAME
 ```
-Output average unpaired probability (AUP) to a file with user specified name. (default False)
+Output unpaired probability for each nuc and average unpaired probability (AUP) to a file with user specified name. (default False)
 ```
 --access_u or -U 
 ```

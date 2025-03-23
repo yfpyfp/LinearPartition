@@ -529,7 +529,7 @@ double BeamCKYParser::parse(string &seq)
             dump_forest(seq, false); // inside-outside forest
         cal_PairProb(viterbi);
 
-        cal_AUP(seq);
+        cal_unpaired(seq);
 
         if (access_u)
             print_accessible_U(seq);
@@ -599,7 +599,7 @@ BeamCKYParser::BeamCKYParser(int beam_size,
                              string shape_file_path,
                              bool fasta,
                              int dangles,
-                             string aupfile,
+                             string unpairedfile,
                              bool accessu)
     : beam(beam_size),
       no_sharp_turn(nosharpturn),
@@ -618,7 +618,7 @@ BeamCKYParser::BeamCKYParser(int beam_size,
       threshknot_file_index(ThreshKnot_file_index),
       is_fasta(fasta),
       dangle_mode(dangles),
-      aup_file(aupfile),
+      unpaired_file(unpairedfile),
       access_u(accessu)
 
 {
@@ -708,8 +708,8 @@ int main(int argc, char **argv)
     // SHAPE
     string shape_file_path = "";
 
-    // AUP
-    string aup_file;
+    // unpaired and AUP
+    string unpaired_file;
     bool access_u = false;
 
     if (argc > 1)
@@ -733,7 +733,7 @@ int main(int argc, char **argv)
         fasta = atoi(argv[17]) == 1;
         dangles = atoi(argv[18]);
         ystruct = argv[19]; // for p(y|x)
-        aup_file = argv[20];
+        unpaired_file = argv[20];
         access_u = atoi(argv[21]) == 1;
     }
 
@@ -831,7 +831,7 @@ int main(int argc, char **argv)
         replace(rna_seq.begin(), rna_seq.end(), 'T', 'U');
 
         // lhuang: moved inside loop, fixing an obscure but crucial bug in initialization
-        BeamCKYParser parser(beamsize, !sharpturn, is_verbose, bpp_file, bpp_file_index, pf_only, bpp_cutoff, forest_file, mea, MEA_gamma, MEA_file_index, MEA_bpseq, ThreshKnot, ThreshKnot_threshold, ThreshKnot_file_index, shape_file_path, fasta, dangles, aup_file, access_u);
+        BeamCKYParser parser(beamsize, !sharpturn, is_verbose, bpp_file, bpp_file_index, pf_only, bpp_cutoff, forest_file, mea, MEA_gamma, MEA_file_index, MEA_bpseq, ThreshKnot, ThreshKnot_threshold, ThreshKnot_file_index, shape_file_path, fasta, dangles, unpaired_file, access_u);
 
         double ensemble = parser.parse(rna_seq); // ensemble free energy
 
