@@ -204,8 +204,8 @@ void BeamCKYParser::print_accessible_U(string &seq)
             sum_unpaired_U += unpaired_prob[i];
     }
 
-    pf_type accessible_U = sum_unpaired_U / seq_length;
-    printf("\naccessible U%%: %.5f\n", accessible_U);
+    pf_type accessible_U = sum_unpaired_U / seq_length * 100;
+    printf("\naccessible U%%: %.3f%%\n", accessible_U);
 }
 
 string BeamCKYParser::back_trace(const int i, const int j, const vector<vector<int>> &back_pointer)
