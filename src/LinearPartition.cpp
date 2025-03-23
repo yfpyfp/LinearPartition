@@ -595,7 +595,9 @@ BeamCKYParser::BeamCKYParser(int beam_size,
                              string ThreshKnot_file_index,
                              string shape_file_path,
                              bool fasta,
-                             int dangles)
+                             int dangles,
+                             string aupfile,
+                             bool accessu)
     : beam(beam_size),
       no_sharp_turn(nosharpturn),
       is_verbose(verbose),
@@ -612,7 +614,10 @@ BeamCKYParser::BeamCKYParser(int beam_size,
       threshknot_threshold(ThreshKnot_threshold),
       threshknot_file_index(ThreshKnot_file_index),
       is_fasta(fasta),
-      dangle_mode(dangles)
+      dangle_mode(dangles),
+      aup_file(aupfile),
+      access_u(accessu)
+
 {
 #ifdef lpv
     initialize();
@@ -823,7 +828,7 @@ int main(int argc, char **argv)
         replace(rna_seq.begin(), rna_seq.end(), 'T', 'U');
 
         // lhuang: moved inside loop, fixing an obscure but crucial bug in initialization
-        BeamCKYParser parser(beamsize, !sharpturn, is_verbose, bpp_file, bpp_file_index, pf_only, bpp_cutoff, forest_file, mea, MEA_gamma, MEA_file_index, MEA_bpseq, ThreshKnot, ThreshKnot_threshold, ThreshKnot_file_index, shape_file_path, fasta, dangles);
+        BeamCKYParser parser(beamsize, !sharpturn, is_verbose, bpp_file, bpp_file_index, pf_only, bpp_cutoff, forest_file, mea, MEA_gamma, MEA_file_index, MEA_bpseq, ThreshKnot, ThreshKnot_threshold, ThreshKnot_file_index, shape_file_path, fasta, dangles, aup_file, access_u);
 
         double ensemble = parser.parse(rna_seq); // ensemble free energy
 

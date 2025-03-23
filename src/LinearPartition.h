@@ -119,7 +119,7 @@ public:
                   string shape_file_path="",
                   bool is_fasta=false,
 		          int dangles=1,
-                  string aup_file="",
+                  string aupfile="",
                   bool access_u=false);
 
     // DecoderResult parse(string& seq);
@@ -171,7 +171,7 @@ private:
 
     pf_type AUP;
 
-    void BeamCKYParser::cal_AUP();
+    void cal_AUP(string &seq)
 
     void output_to_file_AUP(string &seq, string file_name, const char * type);
 
