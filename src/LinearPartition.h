@@ -98,6 +98,8 @@ public:
     double m = 1.8;
     double b = -0.6;
 
+    string aup_file;
+    bool access_u;
 
     BeamCKYParser(int beam_size=100,
                   bool nosharpturn=true,
@@ -116,7 +118,9 @@ public:
                   string threshknot_file_index="",
                   string shape_file_path="",
                   bool is_fasta=false,
-		          int dangles=1);
+		          int dangles=1,
+                  string aup_file="",
+                  bool access_u=false);
 
     // DecoderResult parse(string& seq);
     double parse(string& seq);
@@ -161,8 +165,15 @@ private:
 
     void output_to_file(string file_name, const char * type);
     void output_to_file_MEA_threshknot_bpseq(string file_name, const char * type, map<int,int> & pairs, string & seq);
+    
+    // AUP
+    vector<pf_type> unpaired_prob;
 
+    pf_type AUP;
 
+    void BeamCKYParser::cal_AUP();
+
+    void output_to_file_AUP(string &seq, string file_name, const char * type);
 
     // SHAPE
     std::vector<double> SHAPE_data;

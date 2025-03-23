@@ -67,6 +67,14 @@ Output base pairing probability matrix to a file with user specified name (overw
 ```
 Outputs base pairing probability matrices to files with user specified prefix. (default False)
 ```
+--avg_unpaired_prob FILE_NAME or -AUP FILE_NAME
+```
+Output average unpaired probability (AUP) to a file with user specified name. (default False)
+```
+--accessible_U or -U 
+```
+Print the percentage of unpaired U. (default False)
+```
 --part or -p
 ```
 Partition function calculation only. (default False)
