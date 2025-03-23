@@ -531,6 +531,9 @@ double BeamCKYParser::parse(string &seq)
 
         cal_AUP(seq);
 
+        if (access_u)
+            print_accessible_U(seq);
+
         if (mea_)
             PairProb_MEA(seq);
 

@@ -195,6 +195,18 @@ void BeamCKYParser::cal_AUP(string &seq)
     return;
 }
 
+void BeamCKYParser::print_accessible_U(string &seq)
+{
+    pf_type sum_unpaired_U = 0.0;
+    for (int i = 1; i <= seq_length; i++)
+    {
+        if (seq[i - 1] == 'U')
+            sum_unpaired_U += unpaired_prob[i];
+    }
+
+    printf("\naccessible U%%: %.5f\n", sum_unpaired_U);
+}
+
 string BeamCKYParser::back_trace(const int i, const int j, const vector<vector<int>> &back_pointer)
 {
 
