@@ -529,7 +529,7 @@ double BeamCKYParser::parse(string &seq)
             dump_forest(seq, false); // inside-outside forest
         cal_PairProb(viterbi);
 
-        cal_AUP(string &seq);
+        cal_AUP(seq);
 
         if (mea_)
             PairProb_MEA(seq);
